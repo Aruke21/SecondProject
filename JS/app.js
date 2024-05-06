@@ -1,6 +1,6 @@
-//var navbarContent = ["О НАС", "КАТАЛОГ", "НАШИ РАБОТЫ", "КОНТАКТЫ"]
 
-var navbarContent = [
+
+const navbarContent = [
     {
         title: "О НАС",
         link: "about/"
@@ -19,17 +19,17 @@ var navbarContent = [
     },
 ]
 
-var navbar = document.querySelector(".navbar") 
+const navbar = document.querySelector(".navbar") 
 
 navbarContent.forEach(function(item){
-    var linkEl = document.createElement("a")
+    const linkEl = document.createElement("a")
     linkEl.textContent = item.title
     linkEl.setAttribute("href",`/${item.link}`)
     navbar.append(linkEl)
-})
+}); //заполнение хэдера
 
 
-var wrapper = document.getElementById("wrapper");
+const wrapper = document.getElementById("wrapper");
 wrapper.style.backgroundImage = "url(assets/Rectangle.png)";
 wrapper.style.backgroundSize = "cover";
 wrapper.style.backgroundPosition = "center";
@@ -40,51 +40,75 @@ wrapper.style.backgroundRepeat = "no-repeat";
 //     price: ["2000 сом", "2000 сом", "2000 сом", "2000 сом", "2000 сом", "2000 сом", "2000 сом", "2000 сом", "2000 сом"]
 // }
 
-// var tableQuantity = document.querySelector(".tableQuantity")
-// var tablePrice = document.querySelector(".tablePrice")
+// const tableQuantity = document.querySelector(".tableQuantity")
+// const tablePrice = document.querySelector(".tablePrice")
 
 // function tableMaker(arr){
 //   arr.forEach(function(item){
-//     var tCell = document.createElement("td")
+//     const tCell = document.createElement("td")
 //     tCell.textContent = item
 //     tableRow.append(tCell)
 //   })
 // }
-// for(var key in tableObj){
+// for(const key in tableObj){
 //     tableMaker(tableObj[key], key === "quantity" ? tableQuantity : tablePrice)
 // }
 
 
-// var tableObj = {
-//     table1: {
-//         quantity: ["5-10", "5-10", "5-10", "5-10", "5-10", "5-10","5-10", "5-10", "5-10"]
-//         price: ["2000 сом", "2000 сом", "2000 сом", "2000 сом", "2000 сом", "2000 сом", "2000 сом", "2000 сом", "2000 сом"]
-//     },
-//     table2: {
-//         quantity: ["5-10", "5-10", "5-10", "5-10", "5-10", "5-10","5-10", "5-10", "5-10"]
-//         price: ["2000 сом", "2000 сом", "2000 сом", "2000 сом", "2000 сом", "2000 сом", "2000 сом", "2000 сом", "2000 сом"]
-//     },
-//     table3: {
-//         quantity: ["5-10", "5-10", "5-10", "5-10", "5-10", "5-10","5-10", "5-10", "5-10"]
-//         price: ["2000 сом", "2000 сом", "2000 сом", "2000 сом", "2000 сом", "2000 сом", "2000 сом", "2000 сом", "2000 сом"]
-//     }
-// }
+const tableObj = {
+    table1: {
+        quantity: ["Количество:", "5-10", "5-10", "5-10", "5-10", "5-10", "5-10","5-10", "5-10", "5-10"],
+        price: ["Цена:", "2000 сом", "2000 сом", "2000 сом", "2000 сом", "2000 сом", "2000 сом", "2000 сом", "2000 сом", "2000 сом"],
+    },
+    table2: {
+        quantity: ["Количество:", "5-10", "5-10", "5-10", "5-10", "5-10", "5-10","5-10", "5-10", "5-10"],
+        price: ["Цена:", "2000 сом", "2000 сом", "2000 сом", "2000 сом", "2000 сом", "2000 сом", "2000 сом", "2000 сом", "2000 сом"],
+    },
+    table3: {
+        quantity: ["Количество:", "5-10", "5-10", "5-10", "5-10", "5-10", "5-10","5-10", "5-10", "5-10"],
+        price: ["Цена:", "2000 сом", "2000 сом", "2000 сом", "2000 сом", "2000 сом", "2000 сом", "2000 сом", "2000 сом", "2000 сом"],
+    }
+}
 
-// var tableWrapper = document.querySelector(".tableWrapper")
+//test
 
-// function tableMaker(){
-//     var table = document.createElement("table")
+const tableWrapper = document.querySelector('.tableWrapper')
 
-//     var tableHead = document.createElement("thead")
-//     var tableHeadTitle = document.createElement("th")
-//     tableHeadTitle.textContent = "Худи стандарт"
-//     tableHead.append(tableHeadTitle)
+function tableMaker(tableData){
+  const table = document.createElement('table') //создаем таблицу
+  table.classList.add("table")
+  const tableHead = document.createElement('thead') //создаем хэдер таблицы
+  const tableHeadTitle = document.createElement('th') //создаем заголовок
+  tableHeadTitle.textContent = 'Худи стандарт'
+  tableHead.append(tableHeadTitle) //вставляем заголовок в хэдер
+  const tableBody = document.createElement('tbody') //создаем тело таблицы
 
-//     var tableBody = document.createElement("tbody")
+  for(const row in tableData){ //определим количество рядов
+    const tableRow = document.createElement("tr") //создаем ряд
+    tableData[row].forEach(function(item){
+        const tableCell = document.createElement("td") // создаем ячейку
+        tableCell.textContent = item // присваиваем ее к массиву
+        tableRow.append(tableCell) //вставляем ячейку в ряд
+    })
+tableBody.append(tableRow) //вставляем ряд в тело таблицы
+}
 
-//     table.append(tableHead)
-//     table.append(tableBody)
+table.append(tableHead) //добавляем в таблицу хэдер
+table.append(tableBody) //добавлем в таблицу тело
 
-//     tableWrapper.append(table)
-// }
-// tableMaker()
+tableWrapper.append(table)
+}
+
+for(const key in tableObj){
+    tableMaker(tableObj[key])
+}
+
+
+// setTimeout(() => {
+//     console.log("hello")
+// },2000)
+
+const interval = setInterval(() => {
+    console.log("interval")
+}, 1000)
+setTimeout(() => {clearInterval(interval)}, 5000) 

@@ -143,6 +143,14 @@ body{
     border: 1px solid;
     border-color: #3F3F3F;
 }
-/* table{
-    margin-top: 200px;
-} */
+.tableWrapper{
+    margin-top: 250px;
+    border: 1px solid;
+    border-radius: 16px;
+    background-color: lightgray;
+    gap: 30px;
+}
+.table{
+    border-collapse: separate;
+    border-spacing: 15px;
+}
